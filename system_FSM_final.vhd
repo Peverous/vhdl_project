@@ -37,7 +37,7 @@ begin
                                      data_A=>rom1,
                                      data_B=>rom2);
                                   
-  U_OUT_RAM        : single_ram
+  U_OUT_RAM       	: single_ram
                             port map (clk=>clk,
                                       we=>wr,
                                       en=>enRAM,
@@ -45,24 +45,24 @@ begin
                                       din=>sum,
                                       dout=>dout);
                                       
-  U_MULTI           : mul generic map (n=>input_length)
+  U_MULTI			: mul generic map (n=>input_length)
                             port map (a=>rom1,
                                       b=>rom2,
                                       c=>ginomeno);
 
                                       
- U_ADDER           : adder generic map (n=>mult_length)
+ U_ADDER           	: adder generic map (n=>mult_length)
                             port map(a=>old,
                                      b=>ginomeno,
                                      c=>sum);
                                      
-  U_REG              : loop_reg generic map (n=>mult_length)
+  U_REG          	: loop_reg generic map (n=>mult_length)
                             port map (din=>sum,
                                       clk=>clk,
                                       rst=>rstr3,
                                       dout=>old);
                                       
-  U_ADDR_GEN          : add_generator
+  U_ADDR_GEN         : add_generator
                               port map (clk=>clk,
                                         rst=>rst,
                                         enable_ram=>en_addr_ram,
@@ -71,21 +71,21 @@ begin
                                         addr2=>address1,
                                         addr3=>addr_RAM);
                                         
-  U_COUNTER            : counter generic map(n=>cnt_width)
+  U_COUNTER          : counter generic map(n=>cnt_width)
                               port map (clk=>clk,
                                         rst=>rstr3,
                                         dout=>cnt_out);
   
   
-  U_FSM					 	: FSM_final 
-										port map (clk=>clk,
-													 rst=>rst,
-													 cnt=>cnt_out,
-													 enRAM=>enRAM,
-													 enROM=>enROM,
-													 wr=>wr,
-													 rstr3=>rstr3,
-													 en_addr_ram=>en_addr_ram,
-													 en_addr_rom=>en_addr_rom);
+  U_FSM				: FSM_final 
+								port map (clk=>clk,
+							   			 rst=>rst,
+										 cnt=>cnt_out,
+										 enRAM=>enRAM,
+										 enROM=>enROM,
+										 wr=>wr,
+										 rstr3=>rstr3,
+										 en_addr_ram=>en_addr_ram,
+										 en_addr_rom=>en_addr_rom);
   
   end struct;
