@@ -6,15 +6,15 @@ use work.constants.all;
 
 entity counter is
   generic(n : integer :=4);
-    port(clk : in std_logic;
-         rst : in std_logic;
-         dout : out std_logic_vector(n-1 downto 0));
+    port(clk    : in std_logic;
+         rst    : in std_logic;
+         dout   : out std_logic_vector(n-1 downto 0));
 end counter;
 
 architecture archi of counter is
-    signal tmp: std_logic_vector(n-1 downto 0);
+    signal tmp  : std_logic_vector(n-1 downto 0);
 begin
-U_proc   : process (clk)
+U_proc  : process (clk)
     begin
         if (clk'event and clk='1') then
           if (rst='1') then
