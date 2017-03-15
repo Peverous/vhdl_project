@@ -14,7 +14,7 @@ package constants is
   constant ram_width 		: integer :=32;
   constant addr_range1 		: integer :=integer(ceil(log2(real(rom_width))));
   constant addr_range2		: integer :=integer(ceil(log2(real(ram_width))));
-  constant ROM_NAME     : string := "rom.txt";
+  constant ROM_NAME     	: string := "rom.txt";
   
   type state is (s1,s2,calc,init,write_state);
   type rom_type is array (0 to rom_width-1) of bit_vector(input_length-1 downto 0);
@@ -64,13 +64,13 @@ port (din : in std_logic_vector(n-1 downto 0);
 end component reg2;
 
 component  add_generator is
-  port (clk      : in std_logic;
-        rst      : in std_logic;
-        enable_rom   : in std_logic;
+  port (clk      	: in std_logic;
+        rst      	: in std_logic;
+        enable_rom  : in std_logic;
         enable_ram  : in std_logic;
-        addr1    : out std_logic_vector(addr_range1-1 downto 0);
-        addr2    : out std_logic_vector(addr_range1-1 downto 0);
-		    addr3	 : out std_logic_vector(addr_range2-1 downto 0));
+        addr1    	: out std_logic_vector(addr_range1-1 downto 0);
+        addr2    	: out std_logic_vector(addr_range1-1 downto 0);
+		    addr3	: out std_logic_vector(addr_range2-1 downto 0));
 end component add_generator;
 
 component single_ram is
@@ -79,7 +79,7 @@ component single_ram is
 		 en			: in std_logic;
 		 addr		: in std_logic_vector(addr_range2-1 downto 0);
 		 din		: in std_logic_vector(mult_length-1 downto 0);
-		 dout		: out std_logic_vector(mult_length-1 downto 0));
+		 dout		: out std_logic_vector(mult_length-1 downto 0));	
 end component single_ram;
 
 component dual_rom is
@@ -93,7 +93,7 @@ end component dual_rom;
 
 component FSM_final is
 port  ( clk				: in std_logic;
-		rst   		: in std_logic;
+		rst   			: in std_logic;
 		cnt				: in std_logic_vector(cnt_width-1 downto 0);
 		enRAM			: out std_logic;
 		enROM			: out std_logic;
