@@ -7,21 +7,21 @@ end testbench;
 
 architecture test_system of testbench is
 component system2 is
-  port (clk       : in std_logic;
-        rst     : in std_logic;
-        dout      : out std_logic_vector(mult_length-1 downto 0));
+  port (clk       	: in std_logic;
+        rst     	: in std_logic;
+        dout      	: out std_logic_vector(mult_length-1 downto 0));
 end component;
 
-signal clk : std_logic;
-signal rst : std_logic;
-signal data_out : std_logic_vector(mult_length-1 downto 0);
-constant clock_period : time :=50 ns;
+signal clk 				: std_logic;
+signal rst 				: std_logic;
+signal data_out 		: std_logic_vector(mult_length-1 downto 0);
+constant clock_period 	: time :=50 ns;
 
 begin
 
 UUT : system2 port map (clk=>clk,
-			rst=>rst,
-			dout=>data_out);
+						rst=>rst,
+						dout=>data_out);
 
 process
  begin
