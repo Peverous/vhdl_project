@@ -13,20 +13,19 @@ entity single_ram is
 end single_ram;
 
 architecture syn of single_ram is
-
-	signal RAM : ram_type;
+signal RAM : ram_type;
 	
 begin
 ram_proc :	process (clk)
-			begin
-				if (clk'event and clk='1') then
-					if (en='1') then
-						if(we='1') then
-							RAM(conv_integer(addr)) <= din;
+				begin
+					if (clk'event and clk='1') then
+						if (en='1') then
+							if(we='1') then
+								RAM(conv_integer(addr)) <= din;
+							end if;
+							dout <= RAM(conv_integer(addr));
 						end if;
-						dout <= RAM(conv_integer(addr));
 					end if;
-				end if;
 			end process;
 
 end syn;
